@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in with GitHub</title>
+    <style>
+      body {
+        background-color: #0d1117;
+        color: #c9d1d9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+      }
+      .btn {
+        background-color: #21262d;
+        color: white;
+        border: 1px solid #30363d;
+        padding: 12px 24px;
+        font-size: 18px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background-color: #30363d;
+      }
+      .btn img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" id="github-login">Sign in with GitHub</button>
+    <script>
+      const CLIENT_ID = "Ov23li1JYZUjwduVFkdY";
+      const vendors = {
+        github: "https://github.com/login/oauth/authorize?",
+      };
+
+      const signInBtn = document.getElementById("github-login");
+      signInBtn.addEventListener("mousedown", redirectToGithub);
+
+      function redirectToGithub() {
+        const scope = "user:email";
+        const url = `${vendors.github}scope=${scope}&client_id=${CLIENT_ID}`;
+        window.location.replace(url);
+      }
+    </script>
+  </body>
+</html>

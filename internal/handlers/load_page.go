@@ -5,8 +5,9 @@ import (
 	"net/http"
 	"os"
 )
+
 func LoadPage(htmlPath string, next http.HandlerFunc) http.HandlerFunc {
-	return func (w http.ResponseWriter, r *http.Request) {	
+	return func(w http.ResponseWriter, r *http.Request) {
 		var file, err = os.ReadFile(htmlPath)
 		if err != nil {
 			slog.Warn("Error reading file", "error", err)
@@ -14,7 +15,7 @@ func LoadPage(htmlPath string, next http.HandlerFunc) http.HandlerFunc {
 			defer w.Write(file)
 		}
 
-		if (next != nil) {
+		if next != nil {
 			next(w, r)
 		}
 	}
